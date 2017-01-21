@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayVideo : MonoBehaviour {
 
-    public bool play;
+    public static bool play;
 
     public static int fps;
 
