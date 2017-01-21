@@ -10,10 +10,12 @@ public class PlayVideo : MonoBehaviour {
 
     private static MovieTexture mTexture;
 
-    private void Awake()
+    void Awake()
     {
         fps = 30;
         Application.targetFrameRate = fps;
+        GetComponent<Renderer>().sortingLayerName = "Default";
+        print("here");
     }
 
     // Use this for initialization
