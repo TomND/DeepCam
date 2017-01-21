@@ -10,10 +10,19 @@ public class PlayVideo : MonoBehaviour {
 
     private static MovieTexture mTexture;
 
+    private void Awake()
+    {
+        fps = 30;
+        Application.targetFrameRate = fps;
+    }
+
+    // Use this for initialization
+
+
 	// Use this for initialization
 	void Start () {
         mTexture = ((MovieTexture)GetComponent<Renderer>().material.mainTexture);
-        fps = 30;
+        
     }
 	
 	// Update is called once per frame
