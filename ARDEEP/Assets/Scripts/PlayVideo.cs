@@ -14,6 +14,7 @@ public class PlayVideo : MonoBehaviour {
     {
         fps = 30;
         Application.targetFrameRate = fps;
+        //QualitySettings.vSyncCount = 1;
         GetComponent<Renderer>().sortingLayerName = "Default";
         print("here");
     }
@@ -23,6 +24,7 @@ public class PlayVideo : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+
         mTexture = ((MovieTexture)GetComponent<Renderer>().material.mainTexture);
         
     }

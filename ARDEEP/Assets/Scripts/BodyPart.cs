@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BodyPart : MonoBehaviour {
 
-    public float x;
-    public float y;
+    public float x = 0;
+    public float y = 0;
     public float[] fx = new float[500];
     public float[] fy = new float[500];
     public double certainty;
@@ -32,7 +32,8 @@ public class BodyPart : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(x, y, -25), 1f);
+        if(x != 0 && y != 0)
+        gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(x, y, -25), 0.5f);
         
         
 	}
