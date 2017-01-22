@@ -5,8 +5,10 @@ using UnityEngine;
 public class ARItem : MonoBehaviour {
 
     public bool track;
-    public float[] anchorsx; //left, right, up, down
-    public float[] anchorsy;
+    public BodyPart[] anchors = new BodyPart[4];
+    public float[] anchorsx = new float[4]; //left, right, up, down
+    public float[] anchorsy = new float[4];
+    private float dimensionX;
 
     /*
      * 
@@ -27,38 +29,63 @@ public class ARItem : MonoBehaviour {
     public float offsetY;
     public float width;
     public float height;
+    public bool flipX;
 
 	// Use this for initialization
 	void Start () {
-		if(anchorsx.Length == 1)
+
+        if (flipX)
         {
-            offsetX = anchorsx[0];
-            offsetY = anchorsy[0];
+            transform.rotation = Quaternion.Euler(0, 0, 90);
+
+        }
+    }
+
+
+    public void setOffSet()
+    {
+        if (anchorsx.Length == 1)
+        {
+            offsetX = anchors[0].x;
+            offsetY = anchors[0].y;
         }
         else
         {
-            float xAvg = 0;
-            float yAvg =0 ;
-            for(int i = 0; i < anchorsx.Length; i++)
+            float xAvg = Mathf.Abs(anchors[0].x - anchors[1].x);
+            float yAvg = Mathf.Abs(anchors[2].y - anchors[3].y);
+            /*for(int i = 0; i < anchorsx.Length; i++)
             {
                 xAvg += anchorsx[i];
                 yAvg += anchorsy[i];
-            }
-            offsetX = xAvg / anchorsx.Length;
-            offsetY = xAvg / anchorsy.Length;
+            }*/
+            offsetX = Mathf.Lerp(offsetX,xAvg,0.5f);
+            offsetY = Mathf.Lerp(offsetY, yAvg, 0.5f);
+            print(offsetX + "is the offset  and "+ anchors[0].x);
         }
-	}
+
+    }
 
 
     void setHeight()
     {
-       height = Mathf.Abs(anchorsx[0] - anchorsx[1]);
+        float boundY = GetComponent<SpriteRenderer>().bounds.size.y*5;
+        float target= Mathf.Abs(anchors[0].y - anchors[1].y);
+        
+        float scale = target / boundY;
+        height = boundY * scale;
+        height = target / 2;
 
     }
 
     void setWidth() //TODO: remove absolute value, can have negative scale, should show back.
     {
-        width = Mathf.Abs(anchorsy[0] - anchorsy[1]);
+        
+        float boundX = GetComponent<SpriteRenderer>().bounds.size.x*5;
+        float target = Mathf.Abs(anchors[2].x - anchors[3].x);
+        print(target);
+        float scale = target / boundX;
+        width = boundX * scale;
+        width = target / 2;
     }
 	
 	// Update is called once per frame
@@ -72,11 +99,14 @@ public class ARItem : MonoBehaviour {
 
     void tracker()
     {
-        gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(anchor.x,anchor.y,-2f),0.9f); // follow
+        if (anchor.x != 0 && anchor.y != 0)
+        gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(anchor.x+offsetX,anchor.y+offsetY,-2f),0.9f); // follow
 
         //scale
+        setOffSet();
         setHeight();
         setWidth();
-        gameObject.transform.localScale = new Vector3(width,height,1);
+        if(width != 0 && height != 0)
+        gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(height/1.5f, width/1.5f, 1),0.5f) ;
     }
 }

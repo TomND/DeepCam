@@ -8,25 +8,39 @@ public class Overlay : MonoBehaviour {
     public double time;// since play
     private int offCount = 0;
     public static Body body;
-    public GameObject[] clothes = new GameObject[3];// shirt,hat,pants
-    bool shirt;
-    bool hat;
-    bool pants;
+    //public GameObject[] clothes = new GameObject[3];// shirt,hat,pants
+    public GameObject shirtObj;
+    public bool shirt;
+    public bool hat;
+    public bool pants;
+    private bool initializedClothes = false;
 
 	// Use this for initialization
 	void Start () {
+
+    }
+
+
+    void initializeClothes()
+    {
         if (shirt)
         {
-            clothes[0].GetComponent<ARItem>().anchor = body.parts[5];
-            clothes[0].GetComponent<ARItem>().anchorsx[0] = body.parts[2].x;
-            clothes[0].GetComponent<ARItem>().anchorsx[1] = body.parts[5].x;
-            clothes[0].GetComponent<ARItem>().anchorsx[2] = body.parts[1].x;
-            clothes[0].GetComponent<ARItem>().anchorsx[3] = body.parts[11].x;
+            print("MEOOOW");
+            shirtObj = (GameObject)Instantiate(Resources.Load("jersey-front"), new Vector3(0, 0, -2), Quaternion.identity);
+            shirtObj.GetComponent<ARItem>().anchor = body.parts[5];
+            print(shirtObj.GetComponent<ARItem>().anchorsx[0]);
+            shirtObj.GetComponent<ARItem>().anchors = new BodyPart[] { body.parts[2], body.parts[5], body.parts[1], body.parts[11] };
+            shirtObj.GetComponent<ARItem>().anchorsx[0] = body.parts[2].x;
+            shirtObj.GetComponent<ARItem>().anchorsx[1] = body.parts[5].x;
+            shirtObj.GetComponent<ARItem>().anchorsx[2] = body.parts[1].x;
+            shirtObj.GetComponent<ARItem>().anchorsx[3] = body.parts[11].x;
 
-            clothes[0].GetComponent<ARItem>().anchorsy[0] = body.parts[2].x;
-            clothes[0].GetComponent<ARItem>().anchorsy[1] = body.parts[5].x;
-            clothes[0].GetComponent<ARItem>().anchorsy[2] = body.parts[1].x;
-            clothes[0].GetComponent<ARItem>().anchorsy[3] = body.parts[11].x;
+            shirtObj.GetComponent<ARItem>().anchorsy[0] = body.parts[2].x;
+            shirtObj.GetComponent<ARItem>().anchorsy[1] = body.parts[5].x;
+            shirtObj.GetComponent<ARItem>().anchorsy[2] = body.parts[1].x;
+            shirtObj.GetComponent<ARItem>().anchorsy[3] = body.parts[11].x;
+            
+            
 
         }
         if (pants)
@@ -43,7 +57,13 @@ public class Overlay : MonoBehaviour {
 	void Update () {
         if (body != null)
         {
-            if(offCount > offset)
+            if (initializedClothes == false)
+            {
+                initializedClothes = true;
+                initializeClothes();
+                
+            }
+                if (offCount > offset)
             {
                 body.updateBody();
             }
@@ -56,7 +76,7 @@ public class Overlay : MonoBehaviour {
 
             if (shirt)
             {
-                clothes[0].GetComponent<ARItem>().track = true;
+                shirtObj.GetComponent<ARItem>().track = true;
             }
             if (pants)
             {
