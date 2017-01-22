@@ -1,0 +1,57 @@
+Jacob's Guide to Getting a EC2 Server running in <5 Minutes
+====================================================
+
+- go to your EC2 dashboard on AWS
+- Launch Instance
+- select from their AMI's depending on your needs(Amazon Machine Images)(for this example I picked ubuntu)
+- complete setup, including preparing a Key Pair
+    - *REMEMBER WHERE YOU SAVE THIS, CANNOT GO BACK TO THIS STEP*
+- launch instance
+- locate pem file location, 'chmod 400' your pem file for private access only
+- now you can ssh -i into your server using Public DNS as seen in your EC2 dashboard
+
+How to using the Server Instance I've deployed on AWS EC2 
+==========================================================
+
+1. ssh in, you will need marth.pem from slack, and a Public DNS
+2. all the regular unix commands work including sudo
+3. Download a video on your LOCAL machine and use scp methods to upload
+4. Use the Caffe command to make a video that you have uploaded
+Caffe-rtpose AWS EC2 Install with dpendancies (requires Ubuntu 16.04 AMI) 
+===========================================================================
+
+=== OPTIONAL ===
+If you want a gui to work in, but below is a cli ssh guide for specifically AWS
+- install ubuntu desktop for gui
+- also install nvc4 for connceting over the network
+http://stackoverflow.com/questions/25657596/how-to-set-up-gui-on-amazon-ec2-ubuntu-server
+^follow above guide on GUI instructions^
+=== OPTIONAL === 
+
+- install CUDA using NETOWRK deb
+    - make sure to wget the url+deb first
+    - and update ofc
+
+- Upload files to your aws, using a "Secture File Protocal" command similar to
+    $scp -i ~/Desktop/amazon.pem ~/Desktop/MS115.fa  ubuntu@ec2-54-166-128-20.compute-1.amazonaws.com:~/data/
+    - connect to your instance and upload your cuDUNN files
+    - follow cudnn guides on how to install the files, and locate your CUDA files
+    - scp tips, "-r" can recurisvley search directories, used when moving the CUDA directory for cudnn
+    - use sudo on the local otherwise, aws tossess you permission issues
+    - also dont forget to add a directory on the server otherwise the file gets denied
+
+- install OPEN CV(2.4)
+    Install
+        sudo apt-get install libopencv-dev python-opencv
+
+    Dependencies
+        sudo apt-get install build-essential
+        sudo apt-get install cmake git libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+
+
+- clone caffee, and run make/scripts to build
+    -https://github.com/CMU-Perceptual-Computing-Lab/caffe_rtpose
+
+- upload a video using a SCP process as the one referenced above    
+
+-
