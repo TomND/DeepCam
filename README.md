@@ -18,5 +18,6 @@ In the future we'd love to take this to a mobile application along with setting 
 ***
 1. Download Caffee [here](https://github.com/CMU-Perceptual-Computing-Lab/caffe_rtpose)
 2. Download Unity3d [here](https://unity3d.com)
-3. Select a video with you or anyone else and upload it to Caffee to get your coordinates 
-4. Take these coordinates, save them to a directory and remember where you saved them and change the currFile variable in json_parse.cs
+3. Download https://www.assetstore.unity3d.com/en/#!/content/59897
+4. Select a video with you or anyone else and upload it to Caffee to get your coordinates 
+5. Take these coordinates, save them to a directory and remember where you saved them and change the currFile variable in json_parse.cs
