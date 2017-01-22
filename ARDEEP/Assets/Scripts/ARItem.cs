@@ -7,7 +7,7 @@ public class ARItem : MonoBehaviour {
     public bool track;
     public BodyPart[] anchors = new BodyPart[4];
     public float[] anchorsx = new float[4]; //left, right, up, down
-    public float[] anchorsy = new float[4];
+    public float[] anchorsy = new float[4];//bad
     private float dimensionX;
 
     /*
@@ -51,16 +51,16 @@ public class ARItem : MonoBehaviour {
         }
         else
         {
-            float xAvg = Mathf.Abs(anchors[0].x - anchors[1].x);
-            float yAvg = Mathf.Abs(anchors[2].y - anchors[3].y);
+            float xAvg = Mathf.Abs(anchors[0].x - anchors[1].x)/1;
+            float yAvg = Mathf.Abs(anchors[2].y - anchors[3].y)/1;
             /*for(int i = 0; i < anchorsx.Length; i++)
             {
                 xAvg += anchorsx[i];
                 yAvg += anchorsy[i];
             }*/
-            offsetX = Mathf.Lerp(offsetX,xAvg,0.5f);
-            offsetY = Mathf.Lerp(offsetY, yAvg, 0.5f);
-            print(offsetX + "is the offset  and "+ anchors[0].x);
+            offsetX = Mathf.Lerp(offsetX,xAvg,0.7f);
+            offsetY = Mathf.Lerp(offsetY, yAvg, 0.7f);
+            //print(offsetX + "is the offset  and "+ anchors[0].x);
         }
 
     }
@@ -68,24 +68,25 @@ public class ARItem : MonoBehaviour {
 
     void setHeight()
     {
-        float boundY = GetComponent<SpriteRenderer>().bounds.size.y*5;
-        float target= Mathf.Abs(anchors[0].y - anchors[1].y);
+        float boundY = GetComponent<SpriteRenderer>().bounds.size.x *2;
+        float target= Mathf.Abs(anchors[2].x - anchors[3].x);
         
         float scale = target / boundY;
-        height = boundY * scale;
-        height = target / 2;
+        height = scale*150;//boundY * scale;
+        //height = target / 2;
 
     }
 
     void setWidth() //TODO: remove absolute value, can have negative scale, should show back.
     {
         
-        float boundX = GetComponent<SpriteRenderer>().bounds.size.x*5;
-        float target = Mathf.Abs(anchors[2].x - anchors[3].x);
-        print(target);
+        float boundX = GetComponent<SpriteRenderer>().bounds.size.y *2 ;
+        //print(boundX + "is the bound x");
+        float target = Mathf.Abs(anchors[0].y - anchors[1].y);
+        //print(target);
         float scale = target / boundX;
-        width = boundX * scale;
-        width = target / 2;
+        width = scale*150;//boundX * scale;
+        //width = target / 2;
     }
 	
 	// Update is called once per frame
@@ -100,13 +101,13 @@ public class ARItem : MonoBehaviour {
     void tracker()
     {
         if (anchor.x != 0 && anchor.y != 0)
-        gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(anchor.x+offsetX,anchor.y+offsetY,-2f),0.9f); // follow
+        gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(anchor.x+3*offsetX,anchor.y-offsetY,-2f),0.7f); // follow
 
         //scale
         setOffSet();
         setHeight();
         setWidth();
         if(width != 0 && height != 0)
-        gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(height/1.5f, width/1.5f, 1),0.5f) ;
+        gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(width, height, 1),0.7f) ;
     }
 }
