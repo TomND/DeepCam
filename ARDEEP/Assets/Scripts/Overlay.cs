@@ -8,6 +8,7 @@ public class Overlay : MonoBehaviour {
     public double time;// since play
     private int offCount = 0;
     public static Body body;
+    public GameObject[] clothes;
 
 	// Use this for initialization
 	void Start () {

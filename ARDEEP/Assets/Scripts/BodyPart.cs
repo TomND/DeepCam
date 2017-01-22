@@ -33,7 +33,7 @@ public class BodyPart : MonoBehaviour {
 	void Update () {
 
         if(x != 0 && y != 0)
-        gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(x, y, -2), 1f);
+        gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(x, y, -2), 0.95f);
         
         
 	}
