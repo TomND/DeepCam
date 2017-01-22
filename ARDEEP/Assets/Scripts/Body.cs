@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Body : MonoBehaviour {
 
-    BodyPart[] parts = new BodyPart[17];
+    public BodyPart[] parts = new BodyPart[17];
     GameObject[] joints = new GameObject[17];
     int partIndex = 0;
     public int frame = 0;
