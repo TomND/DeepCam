@@ -20,8 +20,8 @@ In the future we'd love to take this to a mobile application along with setting 
 2. Download Unity3d [here](https://unity3d.com)
 3. Select a video with you or anyone else and upload it to Caffee using the command below to recieve your JSON coordinates
 
-'''
+' ' '
 ./build/examples/rtpose/rtpose.bin --video your_video_file.mp4
-'''
+' ' '
 
 4. Take these coordinates, save them to a directory and remember where you saved them and change the currFile variable in json_parse.cs
