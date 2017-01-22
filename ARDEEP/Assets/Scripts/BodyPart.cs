@@ -6,8 +6,8 @@ public class BodyPart : MonoBehaviour {
 
     public float x = 0;
     public float y = 0;
-    public float[] fx = new float[500];
-    public float[] fy = new float[500];
+    public float[] fx = new float[800];
+    public float[] fy = new float[800];
     public double certainty;
     public int id;
     public string part;

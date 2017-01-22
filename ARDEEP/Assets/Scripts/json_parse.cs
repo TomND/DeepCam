@@ -14,12 +14,12 @@ public class json_parse : MonoBehaviour
         int i = 0;
         string temp = "000";
 
-        string curFile = "C:/Projects/uoftHacks2017/JustaCam/ARDEEP/Assets/Scripts/output2/frame000" + temp + ".json";
+        string curFile = "C:/Projects/uofthacks2017P2/JustaCam/ARDEEP/Assets/Scripts/output4/frame000" + temp + ".json";
         while (System.IO.File.Exists(curFile))
         {
             ///print(i + " is the FRAME");
             //C:/Projects/uoftHacks2017/JustaCam/ARDEEP/Assets/
-            var json = System.IO.File.ReadAllText("C:/Projects/uoftHacks2017/JustaCam/ARDEEP/Assets/Scripts/output2/frame000" + temp + ".json");
+            var json = System.IO.File.ReadAllText("C:/Projects/uofthacks2017P2/JustaCam/ARDEEP/Assets/Scripts/output4/frame000" + temp + ".json");
             i++;
             float[] joint1 = new float[19];
             float[] joint2 = new float[19];
@@ -78,7 +78,7 @@ public class json_parse : MonoBehaviour
             }
             //print("here + amount of joint " + joint1.Length);
 
-            curFile = "C:/Projects/uoftHacks2017/JustaCam/ARDEEP/Assets/Scripts/output2/frame000" + temp + ".json";
+            curFile = "C:/Projects/uofthacks2017P2/JustaCam/ARDEEP/Assets/Scripts/output4/frame000" + temp + ".json";
             //print(curFile);
         }
 

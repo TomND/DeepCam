@@ -58,8 +58,8 @@ public class ARItem : MonoBehaviour {
                 xAvg += anchorsx[i];
                 yAvg += anchorsy[i];
             }*/
-            offsetX = Mathf.Lerp(offsetX,xAvg,0.7f);
-            offsetY = Mathf.Lerp(offsetY, yAvg, 0.7f);
+            offsetX = Mathf.Lerp(offsetX,xAvg,0.95f);
+            offsetY = Mathf.Lerp(offsetY, yAvg, 0.95f);
             //print(offsetX + "is the offset  and "+ anchors[0].x);
         }
 
@@ -101,13 +101,13 @@ public class ARItem : MonoBehaviour {
     void tracker()
     {
         if (anchor.x != 0 && anchor.y != 0)
-        gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(anchor.x+3*offsetX,anchor.y-offsetY,-2f),0.7f); // follow
+        gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(anchor.x+10*offsetX,anchor.y-offsetY,-2f),0.5f); // follow
 
         //scale
         setOffSet();
         setHeight();
         setWidth();
         if(width != 0 && height != 0)
-        gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(width, height, 1),0.7f) ;
+        gameObject.transform.localScale = Vector3.Lerp(gameObject.transform.localScale, new Vector3(width*2, height, 1),0.5f) ;
     }
 }
