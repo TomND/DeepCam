@@ -10,6 +10,7 @@ public class Overlay : MonoBehaviour {
     public static Body body;
     //public GameObject[] clothes = new GameObject[3];// shirt,hat,pants
     public GameObject shirtObj;
+    public GameObject hatObj;
     public bool shirt;
     public bool hat;
     public bool pants;
@@ -49,7 +50,10 @@ public class Overlay : MonoBehaviour {
         }
         if (hat)
         {
-
+            hatObj = (GameObject)Instantiate(Resources.Load("Glasses 3"), new Vector3(0, 0, -2), Quaternion.identity);
+            hatObj.GetComponent<ARItem1>().anchor = body.parts[14];
+            //print(hatObj.GetComponent<ARItem1>().anchorsx[0]);
+            hatObj.GetComponent<ARItem1>().anchors = new BodyPart[] { body.parts[14], body.parts[15]};
         }
     }
 	
@@ -84,7 +88,7 @@ public class Overlay : MonoBehaviour {
             }
             if (hat)
             {
-
+                hatObj.GetComponent<ARItem1>().track = true;
             }
 
         }
