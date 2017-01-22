@@ -1,5 +1,6 @@
 # JustaCam
 Just a Camera App to spice up your everyday videos
+
 *for a more technical in-depth explination, click [here](https://docs.google.com/document/d/1mF-euhiF7q4ioyFFcCTbMDUidjrleS8nUvjWi-Jpg-U/edit?usp=sharing) for our tech documentation*
 
 Completed this hack at UofT Hacks IV Jan 20-22 2017
@@ -20,8 +21,7 @@ In the future we'd love to take this to a mobile application along with setting 
 3. Select a video with you or anyone else and upload it to Caffee using the command below to recieve your JSON coordinates
 
 '''
-    ./build/examples/rtpose/rtpose.bin --video your_video_file.mp4
+./build/examples/rtpose/rtpose.bin --video your_video_file.mp4
 '''
 
-4. Take these coordinates, save them to a directory and remember where you saved them
-..* Dont forget to change the curFile to where you saved your JSON files
+4. Take these coordinates, save them to a directory and remember where you saved them and change the currFile variable in json_parse.cs
