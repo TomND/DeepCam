@@ -100,8 +100,8 @@ public class ARItem1 : MonoBehaviour {
 
     void tracker()
     {
-        if (anchor.x != 0 && anchor.y != 0)
-        gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(anchor.x+10*offsetX,anchor.y-offsetY,-2f),0.5f); // follow
+        if (anchor.x >= 10 && anchor.y <= -10 && anchor.x <= 1900 && anchor.y >= -1050 && offsetX <= 150 && offsetY <= 150)
+            gameObject.transform.position = Vector3.Lerp(transform.position, new Vector3(anchor.x + 10 * offsetX, anchor.y - offsetY, -2f), 0.25f); // follow
 
         //scale
         setOffSet();
