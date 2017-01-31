@@ -4,7 +4,7 @@ Just a Camera App to spice up your everyday videos
 *for a more technical in-depth explination, click [here](https://docs.google.com/document/d/1mF-euhiF7q4ioyFFcCTbMDUidjrleS8nUvjWi-Jpg-U/edit?usp=sharing) for our tech documentation*
 
 Completed this hack at UofT Hacks IV Jan 20-22 2017
-By [Thomas](http://thomashorga.com/), [Pratt](https://www.linkedin.com/in/spratiman/), and [Jacob](https://www.linkedin.com/in/jacob-solis/`)
+By [Thomas](http://thomashorga.com/), [Pratt](https://www.linkedin.com/in/spratiman/), and [Jacob](linkedin.com/in/jacob-solis-278811100)
 
 ## Summary, Goals, and Future
 ***
